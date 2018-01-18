@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shelly.fyyservice.mapper.BlogUsersMapper">
+    <resultMap id="BaseResultMap" type="com.shelly.fyyservice.pojo.BlogUsers">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="id_no" property="idNo" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="is_freeze" property="isFreeze" jdbcType="INTEGER"/>
+        <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="last_time" property="lastTime" jdbcType="TIMESTAMP"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <result column="birthdate" property="birthdate" jdbcType="TIMESTAMP"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="qq" property="qq" jdbcType="VARCHAR"/>
+        <result column="weixin" property="weixin" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.shelly.fyyservice.pojo.BlogUsers" extends="BaseResultMap">
+        <result column="id_card_no" property="idCardNo" jdbcType="VARBINARY"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, id_no, phone, email, user_name, password, sex, description, status, is_freeze,
+        crt_time, update_time, last_time, ip, image, birthdate, real_name, qq, weixin
+    </sql>
+    <sql id="Blob_Column_List">
+    id_card_no
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from blog_users
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from blog_users
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.shelly.fyyservice.pojo.BlogUsers">
+    insert into blog_users (id, id_no, phone, 
+      email, user_name, password, 
+      sex, description, status, 
+      is_freeze, crt_time, update_time, 
+      last_time, ip, image, 
+      birthdate, real_name, qq, 
+      weixin, id_card_no)
+    values (#{id,jdbcType=BIGINT}, #{idNo,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{isFreeze,jdbcType=INTEGER}, #{crtTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{lastTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{birthdate,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{weixin,jdbcType=VARCHAR}, #{idCardNo,jdbcType=VARBINARY})
+  </insert>
+    <insert id="insertSelective" parameterType="com.shelly.fyyservice.pojo.BlogUsers">
+        insert into blog_users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="idNo != null">
+                id_no,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="isFreeze != null">
+                is_freeze,
+            </if>
+            <if test="crtTime != null">
+                crt_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="lastTime != null">
+                last_time,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="birthdate != null">
+                birthdate,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="qq != null">
+                qq,
+            </if>
+            <if test="weixin != null">
+                weixin,
+            </if>
+            <if test="idCardNo != null">
+                id_card_no,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="idNo != null">
+                #{idNo,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="isFreeze != null">
+                #{isFreeze,jdbcType=INTEGER},
+            </if>
+            <if test="crtTime != null">
+                #{crtTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastTime != null">
+                #{lastTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="birthdate != null">
+                #{birthdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null">
+                #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="weixin != null">
+                #{weixin,jdbcType=VARCHAR},
+            </if>
+            <if test="idCardNo != null">
+                #{idCardNo,jdbcType=VARBINARY},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.shelly.fyyservice.pojo.BlogUsers">
+        update blog_users
+        <set>
+            <if test="idNo != null">
+                id_no = #{idNo,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="isFreeze != null">
+                is_freeze = #{isFreeze,jdbcType=INTEGER},
+            </if>
+            <if test="crtTime != null">
+                crt_time = #{crtTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastTime != null">
+                last_time = #{lastTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ip != null">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+            <if test="birthdate != null">
+                birthdate = #{birthdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null">
+                qq = #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="weixin != null">
+                weixin = #{weixin,jdbcType=VARCHAR},
+            </if>
+            <if test="idCardNo != null">
+                id_card_no = #{idCardNo,jdbcType=VARBINARY},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shelly.fyyservice.pojo.BlogUsers">
+        update blog_users
+        set id_no = #{idNo,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        user_name = #{userName,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        sex = #{sex,jdbcType=INTEGER},
+        description = #{description,jdbcType=VARCHAR},
+        status = #{status,jdbcType=INTEGER},
+        is_freeze = #{isFreeze,jdbcType=INTEGER},
+        crt_time = #{crtTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+        ip = #{ip,jdbcType=VARCHAR},
+        image = #{image,jdbcType=VARCHAR},
+        birthdate = #{birthdate,jdbcType=TIMESTAMP},
+        real_name = #{realName,jdbcType=VARCHAR},
+        qq = #{qq,jdbcType=VARCHAR},
+        weixin = #{weixin,jdbcType=VARCHAR},
+        id_card_no = #{idCardNo,jdbcType=VARBINARY}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.shelly.fyyservice.pojo.BlogUsers">
+        update blog_users
+        set id_no = #{idNo,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        user_name = #{userName,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        sex = #{sex,jdbcType=INTEGER},
+        description = #{description,jdbcType=VARCHAR},
+        status = #{status,jdbcType=INTEGER},
+        is_freeze = #{isFreeze,jdbcType=INTEGER},
+        crt_time = #{crtTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+        ip = #{ip,jdbcType=VARCHAR},
+        image = #{image,jdbcType=VARCHAR},
+        birthdate = #{birthdate,jdbcType=TIMESTAMP},
+        real_name = #{realName,jdbcType=VARCHAR},
+        qq = #{qq,jdbcType=VARCHAR},
+        weixin = #{weixin,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
